@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Auction Kenya</title>
+    
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.1.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.1.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-functions.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-performance.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
+
+    <!-- <nav class="navigation">
+      <button onclick="Login()" class="login" id="log">Login with Google</button>
+    </nav> -->
+    <div class="page-wrapper">
+      <button id="bt" onclick="Login()">LogIn with Google</button>
+        <div class="page-content--bgf7">
+            <!-- BREADCRUMB-->
+            
+            <section class="au-breadcrumb2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <div class="au-breadcrumb-left">
+                                </div>
+                                <p id="nir">Please send the registration amount here to be added <i class='fas fa-arrow-circle-right' style='font-size:36px;color:red;padding-left: 40px;'></i></p>
+                                <form class="au-form-icon--sm" id="fixer" method="POST">
+                                    <input type="hidden" name="username" id="username">
+                                    <input class="au-input--w300 au-input--style2" type="number" placeholder="Enter the amount you wish to invest" id="money" name="money">
+                                <input type="submit" value="Submit" id="bt" style="cursor: pointer;">
+                                </form>
+                                <br>
+                                <p id="please" style="font-size: 28px;color: red;"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END BREADCRUMB-->
+
+            <!-- WELCOME-->
+            <section class="welcome p-t-10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="title-4" id="one">
+                            </h1>
+                            <hr class="line-seprate">
+                        </div>
+                        <div>
+                          <h1 id="demo"></h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END WELCOME-->
+<section>
+    <p style="text-align: center;">If you wish to leave the group, kindly do so here by giving a one month notice, after, you will be automatically removed</p>
+    <div class="leaving">
+        <form class="au-form-icon--sm" id="remove" method="POST">
+            <input type="hidden">
+            <input type="hidden">
+        <input type="submit" value="Send a one month notice" id="bt" style="cursor: pointer;">
+        </form>
+    </div>
+</section>
+<hr>
+            <!-- STATISTIC-->
+            <section class="statistic statistic2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--green">
+                                <h2 class="number">USER</h2>
+                                <span class="desc" id="two"></span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-account-o"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--orange">
+                                <h2 class="number">Registration</h2>
+                                <span class="desc" id="cash"></span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--blue">
+                                <h2 class="number">Status</h2>
+                                <span class="desc" id="status" style="color: black;"></span>
+                                <p style="color: white;">Times contributed: <span class="desc" id="ctimes" style="color: black;"></span></p>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-calendar-note"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="statistic__item statistic__item--red">
+                                <h2 class="number">Contribution</h2>
+                                <span class="desc" id="final"></span>
+                                <div class="icon">
+                                    <i class="zmdi zmdi-money"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr>
+            <section>
+                <div class="cont" id="cont">
+                    <p style="color: black;">Make your contribution here every month <span style="color: red;">(amount should be shillings 500 or above)</span></p>
+                    <form method="POST" id="contribs">
+                        <input type="number" class="au-input--w300 au-input--style2" id="nums">
+                        <input type="submit" value="Submit" id="bt">
+                    </form>
+                    <br>
+                    <p id="plea" style="font-size: 28px;color: red;"></p>
+                </div>
+                <hr>
+                <br>
+                <br>
+                <p style="text-align: center;color: black;font-size: 27px;">Always make contributions on the 21<sup>st</sup> of every month</p>
+                <br>
+                <br>
+                <div class="intervals">
+                    <p id="current" style="color: orangered;"></p>
+                    <p style="color: orangered;">Your next contribution: <span id="nexter"></span></p>
+                    <p style="color: red;">Contribute before: <span id="warn"></span></p>
+                </div>
+                <br>
+                <br>
+                <hr>
+                <div class="cont" id="conties">
+                    <p style="color: black;">Do you wish to make another contribution? <span style="color: red;">(amount should be shillings 500 or above)</span></p>
+                    <form method="POST" id="contribns">
+                        <input type="text" class="au-input--w300 au-input--style2" id="dig" required placeholder="Please enter your id here" style="display: none;pointer-events: none;">
+                        <input type="number" class="au-input--w300 au-input--style2" id="num" required placeholder="Please enter the amount">
+                        <input type="submit" value="Submit" id="bt">
+                    </form>
+                    <p id="see" style="font-size: 28px;color: red;"></p>
+                    <br>
+                    <p id="plea" style="font-size: 28px;color: red;"></p>
+                </div>
+                <br>
+                <br>
+                <hr>
+                <div class="mid">
+                    <form method="POST" id="loaner">
+                        <h1>Do you wish to borrow a loan?</h1>
+                        <input type="hidden">
+                        <br>
+                        <label for="choose">Choose the type of loan you want:</label>
+                        <br>
+                        <br>
+                        <select name="types" id="type" required onclick="Shower()">
+                            <option value="Emergency Loan">Emergency Loan - Repayment in one year - Monthly interest rate - 0.3%</option>
+                            <option value="Short Loan">Short Loan - Repayment in two years - Monthly interest rate - 0.6%</option>
+                            <option value="Normal Loan">Normal Loan - Repayment in three years - Monthly interest rate - 1.0%</option>
+                            <option value="Development Loan">Development Loan - Repayment in four years - Monthly interest rate - 1.4%</option>
+                        </select>
+                        <br>
+                        <br>
+                        <input type="hidden" class="au-input--w300 au-input--style2" placeholder="Enter the amount you wish to borrow" required id="send_cash">
+                        <br>
+                        <input type="hidden" class="au-input--w300 au-input--style2" placeholder="Enter the amount you wish to borrow" required id="pick_cash">
+                        <br>
+                        <input type="hidden" class="au-input--w300 au-input--style2" placeholder="Enter the amount you wish to borrow" required id="interest_cash">
+                        <br>
+                        <input type="hidden" class="au-input--w300 au-input--style2" placeholder="Enter the amount you wish to borrow" required id="deposit_cash">
+                        <br>
+                        <input type="number" class="au-input--w300 au-input--style2" placeholder="Enter the amount you wish to borrow" required id="sent_cash">
+                        <br>
+                        <input type="submit" value="Submit" id="bt">
+                    </form>
+                </div>
+                <hr>
+                <br>
+                <br>
+                <p style="color: black;text-align: center;">Pay back the loan</p>
+                <div class="mid">
+                    <form method="POST" id="payer">
+                        <input type="number" class="au-input--w300 au-input--style2" placeholder="Enter the amount you wish to pay" required id="pay_cash">
+                        <input type="submit" value="Submit" id="bt">
+                    </form>
+                </div>
+                <hr>
+                <br>
+                <br>
+                <section>
+                    <h1 style="text-align: center;color: black;">Your Loan Statistics</h1>
+                    <br>
+                    <br>
+                    <table id="loan_stats">
+                        <tr>
+                            <th>Type of loan</th>
+                            <th>Amount borrowed</th>
+                            <th>Time borrowed</th>
+                            <th>Interest</th>
+                            <th>Total amount to be paid</th>
+                            <th>Monthly deposit</th>
+                        </tr>
+                    </table>
+                </section>
+                <br>
+                <br>
+                <p style="color: black;font-size: 30px;">The total number of contributions in Shillings is: <span id="fji" style="color: red;font-size: 40px;"></span></p>
+                <br>
+                <p style="color: black;font-size: 30px;">The total number of members in the group is: <span id="wad" style="color: red;font-size: 40px;"></span></p>
+                <br>
+                <h1 style="text-align: center;color: black;">Other members of the group</h1>
+                <hr>
+                <br>
+                <br>
+                <table id="tables">
+                        <tr>
+                            <th>Members</th>
+                            <th>Amount</th>
+                            <th>Time</th>
+                            <th>Times Contributed</th>
+                        </tr>
+                    
+                  </table>
+                </section>
+            <!-- END STATISTIC-->
+
+            <!-- STATISTIC CHART-->
+            
+            <!-- END DATA TABLE-->
+
+            <!-- COPYRIGHT-->
+            <section class="p-t-60 p-b-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2020 Duncan Co. All rights reserved. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr>
+            <!-- END COPYRIGHT-->
+        </div>
+
+    </div>
+
+    
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+
+    <script src="js/main.js"></script>
+    <script src="app.js"></script>
+    <script src="calc.js"></script>
+    
+  </body>
+</html>
